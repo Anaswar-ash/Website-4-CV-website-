@@ -1,48 +1,47 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="card">
-    <div class="card-body p-5">
-        <div class="progress mb-4">
-            <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Step 3</div>
-        </div>
-        <h2 class="card-title text-center mb-4">Education</h2>
+<h2 class="form-title">Education</h2>
+<p class="text-muted mb-4">List your academic achievements.</p>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 
-        {% if educations %}
-            <h4 class="mt-4">Added Education:</h4>
-            <ul class="list-group mb-4">
-                {% for edu in educations %}
-                    <li class="list-group-item">{{ edu.degree }} from {{ edu.institution }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+{% if educations %}
+    <h5 class="mb-3">Your Education</h5>
+    <ul class="list-group mb-4">
+        {% for edu in educations %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><i class="fa-solid fa-graduation-cap me-2 text-primary"></i><strong>{{ edu.degree }}</strong> from {{ edu.institution }}</span>
+                <span class="badge bg-secondary rounded-pill">{{ edu.grad_year }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
-        <h4 class="mb-3">Add New Education</h4>
-        <form method="POST" action="{{ url_for('education') }}">
-            <div class="mb-3">
-                <label for="degree" class="form-label">Degree / Certificate</label>
-                <input type="text" class="form-control" id="degree" name="degree" required>
-            </div>
-            <div class="mb-3">
-                <label for="institution" class="form-label">Institution</label>
-                <input type="text" class="form-control" id="institution" name="institution" required>
-            </div>
-            <div class="mb-3">
-                <label for="grad_year" class="form-label">Year of Graduation</label>
-                <input type="text" class="form-control" id="grad_year" name="grad_year" placeholder="e.g., 2022">
-            </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-secondary">Add This Education</button>
-                <a href="{{ url_for('skills') }}" class="btn btn-primary btn-lg">Continue to Skills</a>
-            </div>
-        </form>
+<hr class="my-4">
+
+<h4 class="mb-3">Add New Education</h4>
+<form method="POST" action="{{ url_for('education') }}">
+    <div class="mb-3">
+        <label for="degree" class="form-label">Degree / Certificate</label>
+        <input type="text" class="form-control" id="degree" name="degree" required>
     </div>
-</div>
+    <div class="mb-3">
+        <label for="institution" class="form-label">Institution</label>
+        <input type="text" class="form-control" id="institution" name="institution" required>
+    </div>
+    <div class="mb-3">
+        <label for="grad_year" class="form-label">Year of Graduation</label>
+        <input type="text" class="form-control" id="grad_year" name="grad_year" placeholder="e.g., 2022">
+    </div>
+    <div class="d-flex justify-content-between mt-4">
+        <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-plus"></i> Add This Education</button>
+        <a href="{{ url_for('skills') }}" class="btn btn-primary">Continue to Skills <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</form>
 {% endblock %}
