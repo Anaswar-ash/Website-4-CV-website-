@@ -1,9 +1,16 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from jinja2 import Markup
 
 app = Flask(__name__)
 # A secret key is required for using sessions
 app.secret_key = os.urandom(24)
+
+# --- CUSTOM TEMPLATE FILTER ---
+@app.template_filter('nl2br')
+def nl2br(value):
+    """Converts newlines in a string to HTML line breaks."""
+    return Markup(value.replace('\n', '<br>\n'))
 
 # --- ROUTE FOR STEP 1: PERSONAL DETAILS ---
 @app.route('/', methods=['GET', 'POST'])
