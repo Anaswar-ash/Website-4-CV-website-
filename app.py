@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from jinja2 import Markup
+from markupsafe import Markup
 
 app = Flask(__name__)
 # A secret key is required for using sessions
