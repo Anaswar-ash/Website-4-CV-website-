@@ -39,18 +39,16 @@ def work_experience():
         return redirect(url_for('personal_details'))
 
     if request.method == 'POST':
-        if 'experience' not in session:
-            session['experience'] = []
-        
-        # Add a new work experience entry
-        session['experience'].append({
+        # More robust way to update a list in a session
+        experience_list = session.get('experience', [])
+        experience_list.append({
             'job_title': request.form['job_title'],
             'company': request.form['company'],
             'start_date': request.form['start_date'],
             'end_date': request.form['end_date'],
             'description': request.form['description']
         })
-        session.modified = True # Mark session as modified
+        session['experience'] = experience_list
         flash('Work experience added!', 'success')
         # Redirect to the same page to allow adding more entries
         return redirect(url_for('work_experience'))
@@ -66,15 +64,13 @@ def education():
         return redirect(url_for('personal_details'))
 
     if request.method == 'POST':
-        if 'education' not in session:
-            session['education'] = []
-        
-        session['education'].append({
+        education_list = session.get('education', [])
+        education_list.append({
             'degree': request.form['degree'],
             'institution': request.form['institution'],
             'grad_year': request.form['grad_year']
         })
-        session.modified = True
+        session['education'] = education_list
         flash('Education entry added!', 'success')
         return redirect(url_for('education'))
 
