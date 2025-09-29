@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-body p-5">
+        <div class="progress mb-4">
+            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Step 5</div>
+        </div>
+        <h2 class="card-title text-center mb-4">Review Your Information</h2>
+
+        <!-- Personal Details -->
+        <div class="mb-4">
+            <h4>Personal Details</h4>
+            <p><strong>Name:</strong> {{ data.personal.full_name }}</p>
+            <p><strong>Email:</strong> {{ data.personal.email }}</p>
+            <p><strong>Phone:</strong> {{ data.personal.phone }}</p>
+            <p><strong>LinkedIn:</strong> <a href="{{ data.personal.linkedin }}">{{ data.personal.linkedin }}</a></p>
+            <p><strong>Summary:</strong> {{ data.personal.summary }}</p>
+        </div>
+
+        <!-- Work Experience -->
+        <div class="mb-4">
+            <h4>Work Experience</h4>
+            {% if data.experience %}
+                {% for exp in data.experience %}
+                    <div class="mb-3 p-3 border rounded">
+                        <p><strong>Title:</strong> {{ exp.job_title }}</p>
+                        <p><strong>Company:</strong> {{ exp.company }}</p>
+                        <p><strong>Duration:</strong> {{ exp.start_date }} - {{ exp.end_date }}</p>
+                        <p><strong>Description:</strong><br>{{ exp.description | nl2br }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No work experience added.</p>
+            {% endif %}
+        </div>
+
+        <!-- Education -->
+        <div class="mb-4">
+            <h4>Education</h4>
+            {% if data.education %}
+                {% for edu in data.education %}
+                    <div class="mb-3 p-3 border rounded">
+                        <p><strong>Degree:</strong> {{ edu.degree }}</p>
+                        <p><strong>Institution:</strong> {{ edu.institution }}</p>
+                        <p><strong>Year:</strong> {{ edu.grad_year }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No education entries added.</p>
+            {% endif %}
+        </div>
+
+        <!-- Skills -->
+        <div class="mb-4">
+            <h4>Skills</h4>
+            <p>{{ data.skills }}</p>
+        </div>
+
+        <div class="d-grid gap-3">
+            <a href="{{ url_for('generate_cv') }}" class="btn btn-success btn-lg">Looks Good! Generate My CV Website</a>
+            <a href="{{ url_for('personal_details') }}" class="btn btn-secondary">Edit My Information</a>
+            <a href="{{ url_for('clear_session') }}" class="btn btn-danger">Start Over</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+# Python specific
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+
+# Instance folder
+instance/
