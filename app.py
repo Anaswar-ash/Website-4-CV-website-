@@ -113,8 +113,14 @@ def generate_cv():
         flash('Cannot generate CV. No data available.', 'danger')
         return redirect(url_for('personal_details'))
 
-    # Pass all session data to the resume template
-    return render_template('resume_template.html', data=session)
+    theme = request.args.get('theme', 'modern_light')
+
+    if theme == 'simple':
+        return render_template('resume_simple.html', data=session)
+    elif theme == 'modern_dark':
+        return render_template('resume_modern.html', data=session, css_file='css/resume_modern_dark.css')
+    else: # Default to modern_light
+        return render_template('resume_modern.html', data=session, css_file='css/resume_modern_light.css')
 
 # --- ROUTE TO CLEAR SESSION AND START OVER ---
 @app.route('/clear')

@@ -57,8 +57,11 @@
     <p>{{ data.skills }}</p>
 </div>
 
-<div class="d-grid gap-3 mt-5">
-    <a href="{{ url_for('generate_cv') }}" class="btn btn-primary btn-lg"><i class="fa-solid fa-rocket"></i> Generate My CV Website!</a>
-    <a href="{{ url_for('clear_session') }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Start Over</a>
-</div>
+        <div class="d-grid gap-3 mt-5">
+            <a href="{{ url_for('generate_cv', theme='modern_light') }}" class="btn btn-primary btn-lg"><i class="fa-solid fa-rocket"></i> Generate Modern Light CV</a>
+            <a href="{{ url_for('generate_cv', theme='modern_dark') }}" class="btn btn-dark btn-lg"><i class="fa-solid fa-moon"></i> Generate Modern Dark CV</a>
+            <a href="{{ url_for('generate_cv', theme='simple') }}" class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-lines"></i> Generate Simple CV</a>
+            <hr>
+            <a href="{{ url_for('clear_session') }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Start Over</a>
+        </div>
 {% endblock %}
