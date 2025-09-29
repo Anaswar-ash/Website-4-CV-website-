@@ -96,6 +96,9 @@ def skills():
 # --- ROUTE FOR STEP 5: REVIEW ---
 @app.route('/review')
 def review():
+    print("--- DEBUG: SESSION DATA ---")
+    print(session)
+    print("---------------------------")
     if 'personal' not in session:
         flash('No data to review. Please start from the beginning.', 'warning')
         return redirect(url_for('personal_details'))
