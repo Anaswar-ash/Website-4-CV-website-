@@ -1,13 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap');
 
 :root {
-    --primary-font: 'Montserrat', sans-serif;
-    --secondary-font: 'Source Sans Pro', sans-serif;
+    --primary-font: 'Helvetica', sans-serif;
+    --secondary-font: 'Helvetica', sans-serif;
     --primary-color: #1F2937;      /* Dark Gray */
     --secondary-color: #5EEAD4;    /* Teal */
     --background-color: #111827;  /* Almost Black */
     --white: #F9FAFB;             /* Off-White Text */
     --text-color: #D1D5DB;        /* Light Gray Text */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 body {
@@ -34,27 +39,13 @@ body {
     text-align: center;
 }
 
-.profile-pic-wrapper {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 20px auto;
-    border: 5px solid var(--secondary-color);
-}
-
-.profile-pic-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .left-column h1 {
     font-family: var(--primary-font);
-    font-size: 2.5em;
-    margin: 0;
+    font-size: 2.2em; /* Reduced size */
+    margin: 0 0 20px 0;
     line-height: 1.2;
     color: var(--white);
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 .contact-info {
@@ -62,6 +53,8 @@ body {
     padding: 0;
     margin-top: 30px;
     text-align: left;
+    animation: fadeIn 0.5s ease-out 0.1s forwards;
+    opacity: 0;
 }
 
 .contact-info li {
@@ -84,6 +77,8 @@ body {
 .skills {
     margin-top: 40px;
     text-align: left;
+    animation: fadeIn 0.5s ease-out 0.2s forwards;
+    opacity: 0;
 }
 
 .skills h2 {
@@ -112,7 +107,13 @@ body {
 
 .section {
     margin-bottom: 40px;
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
 }
+
+.right-column .section:nth-of-type(1) { animation-delay: 0.3s; }
+.right-column .section:nth-of-type(2) { animation-delay: 0.4s; }
+.right-column .section:nth-of-type(3) { animation-delay: 0.5s; }
 
 .section h2 {
     font-family: var(--primary-font);

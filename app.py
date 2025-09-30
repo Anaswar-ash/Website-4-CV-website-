@@ -22,7 +22,7 @@ def personal_details():
             'email': request.form['email'],
             'phone': request.form['phone'],
             'linkedin': request.form['linkedin'],
-            'profile_pic_url': request.form['profile_pic_url'],
+
             'summary': request.form['summary']
         }
         flash('Personal details saved!', 'success')
