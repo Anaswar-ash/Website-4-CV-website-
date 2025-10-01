@@ -57,6 +57,18 @@ def work_experience():
     experience_data = session.get('experience', [])
     return render_template('work_experience.html', experiences=experience_data)
 
+# --- ROUTE FOR DELETING A WORK EXPERIENCE ENTRY ---
+@app.route('/experience/delete/<int:index>')
+def delete_experience(index):
+    experience_list = session.get('experience', [])
+    if 0 <= index < len(experience_list):
+        experience_list.pop(index)
+        session['experience'] = experience_list
+        flash('Work experience entry removed.', 'info')
+    else:
+        flash('Invalid entry index.', 'danger')
+    return redirect(url_for('work_experience'))
+
 # --- ROUTE FOR STEP 3: EDUCATION ---
 @app.route('/education', methods=['GET', 'POST'])
 def education():
@@ -77,6 +89,18 @@ def education():
 
     education_data = session.get('education', [])
     return render_template('education.html', educations=education_data)
+
+# --- ROUTE FOR DELETING AN EDUCATION ENTRY ---
+@app.route('/education/delete/<int:index>')
+def delete_education(index):
+    education_list = session.get('education', [])
+    if 0 <= index < len(education_list):
+        education_list.pop(index)
+        session['education'] = education_list
+        flash('Education entry removed.', 'info')
+    else:
+        flash('Invalid entry index.', 'danger')
+    return redirect(url_for('education'))
 
 # --- ROUTE FOR STEP 4: SKILLS ---
 @app.route('/skills', methods=['GET', 'POST'])
