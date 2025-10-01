@@ -110,13 +110,28 @@ def skills():
         return redirect(url_for('personal_details'))
 
     if request.method == 'POST':
-        # Skills are stored as a comma-separated string
-        session['skills'] = request.form['skills']
-        flash('Skills saved!', 'success')
-        return redirect(url_for('review'))
+        skill = request.form.get('skill')
+        if skill:
+            skills_list = session.get('skills', [])
+            skills_list.append(skill)
+            session['skills'] = skills_list
+            flash('Skill added!', 'success')
+        return redirect(url_for('skills'))
 
-    skills_data = session.get('skills', '')
+    skills_data = session.get('skills', [])
     return render_template('skills.html', skills=skills_data)
+
+# --- ROUTE FOR DELETING A SKILL ---
+@app.route('/skills/delete/<int:index>')
+def delete_skill(index):
+    skills_list = session.get('skills', [])
+    if 0 <= index < len(skills_list):
+        skills_list.pop(index)
+        session['skills'] = skills_list
+        flash('Skill removed.', 'info')
+    else:
+        flash('Invalid entry index.', 'danger')
+    return redirect(url_for('skills'))
 
 # --- ROUTE FOR STEP 5: REVIEW ---
 @app.route('/review')

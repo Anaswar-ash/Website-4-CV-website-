@@ -6,7 +6,10 @@
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">{{ message }}</div>
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         {% endfor %}
     {% endif %}
 {% endwith %}
@@ -16,8 +19,14 @@
     <ul class="list-group mb-4">
         {% for edu in educations %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span><i class="fa-solid fa-graduation-cap me-2 text-primary"></i><strong>{{ edu.degree }}</strong> from {{ edu.institution }}</span>
-                <span class="badge bg-secondary rounded-pill">{{ edu.grad_year }}</span>
+                <div>
+                    <i class="fa-solid fa-graduation-cap me-2 text-primary"></i>
+                    <strong>{{ edu.degree }}</strong> from {{ edu.institution }}
+                    <span class="badge bg-secondary rounded-pill">{{ edu.grad_year }}</span>
+                </div>
+                <a href="{{ url_for('delete_education', index=loop.index0) }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this entry?')">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
             </li>
         {% endfor %}
     </ul>
