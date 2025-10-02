@@ -39,9 +39,9 @@
 
         <section class="section">
             <h2>Skills</h2>
-            <ul class="skills-list">
-                {% for skill in data.skills.split(',') %}
-                    <li>{{ skill.strip() }}</li>
+            <ul class="skills-.list">
+                {% for skill in data.skills %}
+                    <li>{{ skill }}</li>
                 {% endfor %}
             </ul>
         </section>

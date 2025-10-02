@@ -27,8 +27,8 @@
             <div class="skills">
                 <h2>Skills</h2>
                 <ul class="skills-list">
-                    {% for skill in data.skills.split(',') %}
-                        <li>{{ skill.strip() }}</li>
+                    {% for skill in data.skills %}
+                        <li>{{ skill }}</li>
                     {% endfor %}
                 </ul>
             </div>
