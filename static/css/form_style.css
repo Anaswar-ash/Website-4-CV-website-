@@ -12,7 +12,7 @@
     --sidebar-text: #E5E7EB;
     --sidebar-active-text: #FFFFFF;
     --white: #FFFFFF;
-    --radius: 12px;
+    --radius: 15px;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
 }
 
@@ -114,7 +114,7 @@ body {
 }
 
 .form-control, .form-select {
-    border-radius: 8px;
+    border-radius: 15px;
     border: 1px solid var(--input-border);
     padding: 12px 15px;
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -126,7 +126,7 @@ body {
 }
 
 .btn {
-    border-radius: 8px;
+    border-radius: 15px;
     padding: 12px;
     font-weight: 600;
     transition: all 0.3s ease;
